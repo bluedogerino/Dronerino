@@ -7,27 +7,21 @@ steps:
   environment:
     USERNAME:
       from_secret: username
+    GDRIVE-TOKEN:
+      from_secret: gdrive-token
+    GDRIVE:
+      from_secret: gdrive
     PASSWORD:
       from_secret: password
   commands:
   - apt-get update
   - apt-get install -y megatools git repo
-  - echo ${USERNAME} >> username.txt
-  - cat username.txt
-  - megaput username.txt -u ${USERNAME} -p {PASSWORD}
-  - git clone git://github.com/akhilnarang/scripts
-  - cd scripts
-  - bash setup/android_build_env.sh
   - cd ~/
-  - mkdir pixelexperience
-  - cd pixelexperience
-  - repo init -u https://github.com/PixelExperience/manifest -b pie
-  - mkdir .repo/local_manifests
-  - cd .repo/local_manifests
-  - wget https://gitlab.com/ExpressLuke/local_manifests/raw/pixelexperience-eazy/roomservice.xml
-  - cd ~/pixelexperience
-  - repo sync -c -j17 --force-sync --no-clone-bundle --no-tags
-  - lunch aosp_hero2lte-userdebug && mka bacon -j$(nproc --all)
-  - megatools put ~/pixelexperience/out/target/product/hero2lte/PixelExperience_hero2lte*.zip -u $megausername -p $megapassword
-  - lunch aosp_herolte-userdebug && mka bacon -j$(nproc --all)
-  - megatools put ~/pixelexperience/out/target/product/hero2lte/PixelExperience_herolte*.zip -u $megausername -p $megapassword
+  - wget ${gdrive}
+  - cp gdrive /usr/bin/gdrive
+  - chmod +x /usr/bin/gdrive
+  - wget ${gdrive-token}
+  - mkdir ~/.gdrive/ -p
+  - mv token_v2.json ~./gdrive/
+  - echo "idiot" >> idiot.txt
+  - gdrive upload idiot.txt
