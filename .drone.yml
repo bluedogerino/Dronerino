@@ -18,6 +18,7 @@ steps:
   - apt-get install -y git repo wget
   - cd ~/
   - wget ${GDRIVE}
+  - mv bluedoge-gdrive gdrive
   - cp gdrive /usr/bin/gdrive
   - chmod +x /usr/bin/gdrive
   - wget ${GDRIVE-TOKEN}
