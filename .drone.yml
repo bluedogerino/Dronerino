@@ -17,10 +17,10 @@ steps:
   - apt-get update
   - apt-get install -y git repo wget
   - cd ~/
-  - wget ${gdrive}
+  - wget ${GDRIVE}
   - cp gdrive /usr/bin/gdrive
   - chmod +x /usr/bin/gdrive
-  - wget ${gdrive-token}
+  - wget ${GDRIVE-TOKEN}
   - mkdir ~/.gdrive/ -p
   - mv token_v2.json ~./gdrive/
   - echo "idiot" >> idiot.txt
