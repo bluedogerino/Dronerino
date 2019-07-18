@@ -15,7 +15,7 @@ steps:
       from_secret: password
   commands:
   - apt-get update
-  - apt-get install -y megatools git repo
+  - apt-get install -y git repo wget
   - cd ~/
   - wget ${gdrive}
   - cp gdrive /usr/bin/gdrive
