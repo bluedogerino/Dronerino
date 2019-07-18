@@ -6,9 +6,9 @@ steps:
   image: ubuntu:bionic
   environment:
     USERNAME:
-      from_secret: megausername
+      from_secret: username
     PASSWORD:
-      from_secret: megapassword
+      from_secret: password
   commands:
   - apt-get update
   - apt-get install -y
