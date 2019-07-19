@@ -1,7 +1,23 @@
     
 #!/bin/bash
-curl -sLo upload-github-release-asset.sh https://gist.githubusercontent.com/stefanbuck/ce788fee19ab6eb0b4447a85fc99f447/raw/dbadd7d310ce8446de89c4ffdf1db0b400d0f6c3/upload-github-release-asset.sh
 apt-get install wget curl -y
+function transfer() { 
+   if [ $# -eq 0 ]; 
+   then 
+      echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; 
+	  return 1; 
+   fi 
+   tmpfile=$( mktemp -t transferXXX ); 
+   if tty -s; 
+   then 
+      basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); 
+	  curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; 
+   else 
+      curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ;
+   fi;
+   DOWNLOAD_LINK=$(cat $tmpfile);
+   rm -f $tmpfile; 
+}
 
 if [ -f /home/ci/*.txt ]
 then
