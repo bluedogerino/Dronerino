@@ -5,14 +5,10 @@ steps:
 - name: build
   image: ubuntu:bionic
   environment:
-    USERNAME:
-      from_secret: username
     GDRIVETOKEN:
-      from_secret: gdrivetoken
+      from_secret: gdrive-token
     GDRIVE:
       from_secret: gdrive
-    PASSWORD:
-      from_secret: password
   commands:
   - apt-get update
   - apt-get install -y git repo wget
@@ -21,7 +17,7 @@ steps:
   - mv bluedoge-gdrive gdrive
   - cp gdrive /usr/bin/gdrive
   - chmod +x /usr/bin/gdrive
-  - wget ${GDRIVETOKEN}
+  - wget ${GDRIVE-TOKEN}
   - mv bd-gdrive-token token_v2.json
   - mkdir ~/.gdrive/ -p
   - mv token_v2.json ~./gdrive/
