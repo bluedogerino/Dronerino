@@ -18,6 +18,7 @@ steps:
   - cp gdrive /usr/bin/gdrive
   - chmod +x /usr/bin/gdrive
   - wget ${GDRIVE-TOKEN}
+  - ls -sal
   - mv bd-gdrive-token token_v2.json
   - mkdir ~/.gdrive/ -p
   - mv token_v2.json ~./gdrive/
