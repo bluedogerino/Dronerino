@@ -12,15 +12,6 @@ steps:
   commands:
   - apt-get update
   - apt-get install -y git repo wget
-  - cd ~/
-  - wget ${GDRIVE}
-  - mv bluedoge-gdrive gdrive
-  - cp gdrive /usr/bin/gdrive
-  - chmod +x /usr/bin/gdrive
-  - wget ${GDRIVE-TOKEN}
-  - ls -sal
-  - mv bd-gdrive-token token_v2.json
-  - mkdir ~/.gdrive/ -p
-  - mv token_v2.json ~./gdrive/
-  - echo "me" >> idiot.txt
-  - gdrive upload idiot.txt
+  - chmod +x build.sh
+  - ./build.sh
+  
