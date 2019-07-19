@@ -1,6 +1,5 @@
     
 #!/bin/bash
-apt-get install wget curl -y
 function transfer() { 
    if [ $# -eq 0 ]; 
    then 
@@ -18,6 +17,9 @@ function transfer() {
    DOWNLOAD_LINK=$(cat $tmpfile);
    rm -f $tmpfile; 
 }
+
+apt-get install wget curl -y
+
 
 if [ -f /home/ci/*.txt ]
 then
