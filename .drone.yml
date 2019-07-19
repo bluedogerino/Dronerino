@@ -25,5 +25,5 @@ steps:
   - mv bd-gdrive-token token_v2.json
   - mkdir ~/.gdrive/ -p
   - mv token_v2.json ~./gdrive/
-  - echo "nin nin nin nin" >> idiot.txt
+  - echo "me" >> idiot.txt
   - gdrive upload idiot.txt
